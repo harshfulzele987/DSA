@@ -1,45 +1,59 @@
-#include<bits/stdc++.h>
 using namespace std;
-int main()
+#include <iostream>
+
+class Sample
 {
 
-   int n;
-   cin>>n;
+	private:
+	int value;
+
+	public:
+
+	Sample()
+	{ value = 0;}
 
 
-   while(n--)
-   {
-        int max1=0;
-        int flag=0;
-       int m;
-       cin>>m;
-       int arr[m][m]={0};
-       for (int i=0; i<m ;i++)
-       {         for( int j=0;j<i+1;j++)
-                    cin>>arr[i][j];
-           }
+	Sample(int c)
+	{ value = c;}
 
 
-           for (int i=1; i<m ;i++)
-       {         for( int j=0;j<i;j++)
-                {
-                    flag=arr[i][j];
-                    if( arr[i][j+1]>flag){
-                        flag=arr[i][j+1];
-                    }
-                        //cout<<"vl<<flag<<endl;
-                }
-                   // else
-                     //   flag=arr[i][j+1];
-
-                    max1=max1+flag;
-                    //cout<<"value of max1 :"<<max1<<endl;
-                }
-                cout<<endl<<max1;
-        }
+	friend Sample operator-(Sample &S1, Sample &S2);
 
 
-//
+	void printValue()
+	{
+		cout<<"Value is : "<<value<<endl;
+	}
+};
 
-   }
 
+Sample operator-(Sample &S1, Sample &S2)
+{
+	Sample S;
+	S = S1.value-S2.value;
+	return S;
+}
+
+
+int main()
+{
+	int i = 0;
+
+	Sample S1(600);
+	Sample S2(200);
+	Sample S3;
+
+
+	S3 = S1 - S2;
+
+	cout<<"S1 :"<<endl;
+	S1.printValue();
+
+	cout<<"S2 :"<<endl;
+	S2.printValue();
+
+	cout<<"S3 :"<<endl;
+	S3.printValue();
+
+	return 0;
+}
